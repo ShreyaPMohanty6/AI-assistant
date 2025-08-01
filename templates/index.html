@@ -1,0 +1,86 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Voice Assistant</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #1f1f1f, #2a2a2a);
+      color: #fff;
+      text-align: center;
+      padding-top: 80px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+    }
+    button {
+      background: #ff9900;
+      border: none;
+      padding: 18px 40px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #111;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: 0.3s ease;
+    }
+    button:hover {
+      background: #ffaa33;
+      transform: scale(1.05);
+    }
+    .output {
+      margin-top: 50px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px 30px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .label {
+      font-weight: bold;
+      color: #ffcc66;
+    }
+    #loading {
+      margin-top: 20px;
+      font-style: italic;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎙️ AI Voice Assistant</h1>
+  <button onclick="startAssistant()">Start Listening</button>
+  <div id="loading"></div>
+
+  <div class="output">
+    <p><span class="label">You Said:</span> <span id="transcript">...</span></p>
+    <p><span class="label">Gemini:</span> <span id="response">...</span></p>
+  </div>
+
+  <script>
+    async function startAssistant() {
+      document.getElementById("loading").innerText = "Listening and processing...";
+      document.getElementById("transcript").innerText = "...";
+      document.getElementById("response").innerText = "...";
+
+      const res = await fetch("/start", { method: "POST" });
+      const data = await res.json();
+
+      if (data.error) {
+        document.getElementById("loading").innerText = "Error: " + data.error;
+      } else {
+        document.getElementById("loading").innerText = "";
+        document.getElementById("transcript").innerText = data.transcribed;
+        document.getElementById("response").innerText = data.response;
+      }
+    }
+  </script>
+</body>
+</html>
