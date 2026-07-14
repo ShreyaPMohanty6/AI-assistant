@@ -9,7 +9,7 @@ A Flask-based AI Speech Assistant that enables real-time voice interaction using
 - Voice input using microphone
 - Offline Speech-to-Text using Faster-Whisper
 - AI response generation using Google Gemini
-- Offline Text-to-Speech using pyttsx3
+- Offline Text-to-Speech using pyttsx3/vosk
 - Audio prompts for listening and processing
 - Lightweight and easy to run locally
 
@@ -25,15 +25,16 @@ A Flask-based AI Speech Assistant that enables real-time voice interaction using
 - Faster-Whisper
 - Google Gemini API
 - pyttsx3
+- Vosk
 
 ### Audio Processing
 - PyAudio
 - Wave
 - Pygame
 
-### Other Libraries
+### AI Libraries
 - Google Generative AI SDK
-- Vosk (imported for future expansion) for offline speech to text 
+
 
 ---
 
